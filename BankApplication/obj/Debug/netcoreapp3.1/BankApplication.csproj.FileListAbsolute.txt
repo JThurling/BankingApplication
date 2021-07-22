@@ -45,3 +45,9 @@ C:\Users\jthur\UniversalCoding\BankApplication\BankApplication\obj\Debug\netcore
 C:\Users\jthur\UniversalCoding\BankApplication\BankApplication\obj\Debug\netcoreapp3.1\BankApplication.dll
 C:\Users\jthur\UniversalCoding\BankApplication\BankApplication\obj\Debug\netcoreapp3.1\BankApplication.pdb
 C:\Users\jthur\UniversalCoding\BankApplication\BankApplication\obj\Debug\netcoreapp3.1\BankApplication.genruntimeconfig.cache
+C:\Users\jthur\UniversalCoding\BankApplication\BankApplication\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\jthur\UniversalCoding\BankApplication\BankApplication\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\jthur\UniversalCoding\BankApplication\BankApplication\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
+C:\Users\jthur\UniversalCoding\BankApplication\BankApplication\bin\Debug\netcoreapp3.1\MySqlConnector.dll
+C:\Users\jthur\UniversalCoding\BankApplication\BankApplication\bin\Debug\netcoreapp3.1\Pomelo.EntityFrameworkCore.MySql.dll
+C:\Users\jthur\UniversalCoding\BankApplication\BankApplication\bin\Debug\netcoreapp3.1\Pomelo.JsonObject.dll

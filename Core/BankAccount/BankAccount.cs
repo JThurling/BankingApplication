@@ -3,11 +3,11 @@ using System.Security.Principal;
 
 namespace Core.BankAccount
 {
-    public class BankAccount
+    public class BankAccount : BaseEntity
     {
         public string FullName { get; set; }
 
-        public AccountType AccountType { get; set; }
+        public string AccountType { get; set; }
 
         public uint AccountNumber { get; set; }
 

@@ -10,8 +10,9 @@ namespace BankApplication.Helpers
         public MappingProfiles()
         {
             CreateMap<BankAccountDto, BankAccount>()
-                .ForMember(m => m.AccountType, o =>
-                    o.MapFrom(f => Enum.Parse<AccountType>(nameof(AccountType))));
+                .ForMember(f => f.AccountType,
+                    o => o.MapFrom(f
+                        => f.AccountType));
         }
     }
 }

@@ -970,7 +970,7 @@
   },
   "packageFolders": {
     "C:\\Users\\jthur\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Microsoft\\Xamarin\\NuGet": {}
   },
   "project": {
     "version": "1.0.0",
@@ -982,7 +982,7 @@
       "outputPath": "C:\\Users\\jthur\\UniversalCoding\\BankApplication\\Core\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\"
+        "C:\\Microsoft\\Xamarin\\NuGet"
       ],
       "configFilePaths": [
         "C:\\Users\\jthur\\AppData\\Roaming\\NuGet\\NuGet.Config",
