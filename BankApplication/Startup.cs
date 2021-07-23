@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 using AutoMapper;
 using BankApplication.Helpers;
 using Core.BankAccount;
+using Core.Interfaces;
 using Infrastructure.Data;
+using Infrastructure.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -29,7 +31,7 @@ namespace BankApplication
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAutoMapper(typeof(MappingProfiles));
+
             services.AddControllers().AddNewtonsoftJson(options =>
             {
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
@@ -43,6 +45,8 @@ namespace BankApplication
                 });
             });
 
+            services.AddAutoMapper(typeof(MappingProfiles));
+
             services.AddCors(opt =>
             {
                 opt.AddPolicy("CorsPolicy", policy =>
@@ -50,6 +54,8 @@ namespace BankApplication
                     policy.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
                 });
             });
+
+            services.AddScoped<IBankingAccount, BankingAccount>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,6 +66,8 @@ namespace BankApplication
                 app.UseDeveloperExceptionPage();
             }
             app.UseRouting();
+
+            app.UseDefaultFiles();
             app.UseStaticFiles();
             // app.UseStaticFiles(new StaticFileOptions
             // {

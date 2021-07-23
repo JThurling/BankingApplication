@@ -10,6 +10,9 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryContentRootAttribute("BankApplication, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "C:\\Users\\jthur\\UniversalCoding\\BankApplication\\BankApplication", "BankApplication.csproj", "0")]
+[assembly: Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryContentRootAttribute("Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "C:\\Users\\jthur\\UniversalCoding\\BankApplication\\Core", "Core.csproj", "0")]
+[assembly: Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryContentRootAttribute("Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "C:\\Users\\jthur\\UniversalCoding\\BankApplication\\Infrastructure", "Infrastructure.csproj", "0")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("IntegrationTestSuite")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]

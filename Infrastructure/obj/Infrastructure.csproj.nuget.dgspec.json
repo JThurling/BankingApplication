@@ -14,7 +14,7 @@
         "outputPath": "C:\\Users\\jthur\\UniversalCoding\\BankApplication\\Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet"
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
           "C:\\Users\\jthur\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -98,7 +98,7 @@
         "outputPath": "C:\\Users\\jthur\\UniversalCoding\\BankApplication\\Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet"
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
           "C:\\Users\\jthur\\AppData\\Roaming\\NuGet\\NuGet.Config",
