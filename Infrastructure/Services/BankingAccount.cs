@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Core.BankAccount;
@@ -85,6 +86,21 @@ namespace Infrastructure.Services
             }
             if (result <= 0) return false;
             return true;
+        }
+
+        public async Task<List<BankAccount>> GetMany()
+        {
+            var list = await _context.BankAccounts.ToListAsync();
+
+            return list;
+        }
+
+        public async Task<BankAccount> GetAccount(int accountNumber)
+        {
+            var account = await _context.BankAccounts.FirstOrDefaultAsync(f
+                => f.AccountNumber == accountNumber);
+
+            return account;
         }
     }
 }

@@ -1,1 +1,29 @@
-<p>accounts works!</p>
+<app-dash-home></app-dash-home>
+<table class="table text pt-2">
+  <thead>
+  <tr>
+    <th scope="col">Account Number</th>
+    <th scope="col">Full Name</th>
+    <th scope="col">Account Type</th>
+    <th scope="col">Currency</th>
+    <th scope="col">Balance</th>
+    <th scope="col">Edit</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let account of Accounts">
+    <th scope="row">{{account.accountNumber}}</th>
+    <td>{{account.fullName}}</td>
+    <td><span class="small bg-primary text-white p-1 px-5 rounded-2">{{account.accountType}}</span></td>
+    <td>{{account.currencyCode}}</td>
+    <td>{{account.balance}}</td>
+    <td>
+      <a routerLink="{{account.accountNumber}}">
+        <button class="btn btn-primary text-white">
+          <span class="small">Edit</span>
+        </button>
+      </a>
+    </td>
+  </tr>
+  </tbody>
+</table>

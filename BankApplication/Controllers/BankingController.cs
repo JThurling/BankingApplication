@@ -21,6 +21,20 @@ namespace BankApplication.Controllers
             _mapper = mapper;
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetBankAccounts()
+        {
+            var bankAccounts = await _bankingAccount.GetMany();
+            return Ok(bankAccounts);
+        }
+
+        [HttpGet("{accountNumber}")]
+        public async Task<IActionResult> GetBankAccount(int accountNumber)
+        {
+            var bankAccounts = await _bankingAccount.GetAccount(accountNumber);
+            return Ok(bankAccounts);
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreateNewBankAccount([FromBody] BankAccountDto bankAccountDto)
         {
