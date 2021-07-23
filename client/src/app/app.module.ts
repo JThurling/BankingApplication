@@ -10,6 +10,7 @@ import { TransfersComponent } from './dashboard/transfers/transfers.component';
 import {HttpClientModule} from "@angular/common/http";
 import {AccountDetailsComponent} from "./dashboard/account-details/account-details.component";
 import { DashHomeComponent } from './shared/dash-home/dash-home.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -21,11 +22,12 @@ import { DashHomeComponent } from './shared/dash-home/dash-home.component';
     AccountDetailsComponent,
     DashHomeComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

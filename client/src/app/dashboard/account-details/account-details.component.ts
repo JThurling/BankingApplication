@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {DashboardService} from "../dashboard.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Bankaccount} from "../../shared/models/bankaccount";
+import {HttpParams} from "@angular/common/http";
 
 
 @Component({
@@ -12,7 +13,7 @@ import {Bankaccount} from "../../shared/models/bankaccount";
 export class AccountDetailsComponent implements OnInit {
   Accounts: Bankaccount;
 
-  constructor(private dashService: DashboardService, private router: ActivatedRoute) { }
+  constructor(private dashService: DashboardService, private router: ActivatedRoute, private route: Router) { }
 
   ngOnInit(): void {
     this.dashService.getBankAccount(+this.router.snapshot.paramMap.get('accountNumber')).subscribe(res => {
@@ -21,13 +22,18 @@ export class AccountDetailsComponent implements OnInit {
   }
 
   getCurrencyCode(code: string) {
-    switch (code) {
-      case "GBP":
-        return "£ ";
-      case "USD":
-        return "$ ";
-      case "ZAR":
-        return "R ";
-    }
+    return this.dashService.getCurrencyCode(code);
+  }
+
+  setToQueryParam(accountNumber: number) {
+    var params = this.dashService.setQueryParams(accountNumber, 'To');
+    this.route.navigate(["/transfers"],
+      {queryParams: params});
+  }
+
+  setFromQueryParam(accountNumber: number) {
+    var params = this.dashService.setQueryParams(accountNumber, 'From');
+    this.route.navigate(["/transfers"],
+      {queryParams: params});
   }
 }

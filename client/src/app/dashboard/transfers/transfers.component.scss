@@ -1,0 +1,23 @@
+.text {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.background{
+  background-color: rgb(245, 245, 245);
+}
+
+.select {
+  cursor: pointer;
+  transition: 250ms;
+
+  &:hover {
+    background-color: #bb8b41;
+    color: white;
+  }
+}
+
+.make-small {
+  font-size: 0.5em;
+  height: 15px;
+  width: 15px;
+}

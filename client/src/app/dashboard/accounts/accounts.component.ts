@@ -18,4 +18,7 @@ export class AccountsComponent implements OnInit {
     });
   }
 
+  getCurrencyCode(currencyCode: string) {
+    return this.dashService.getCurrencyCode(currencyCode);
+  }
 }

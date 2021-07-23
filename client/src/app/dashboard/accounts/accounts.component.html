@@ -7,7 +7,7 @@
     <th scope="col">Account Type</th>
     <th scope="col">Currency</th>
     <th scope="col">Balance</th>
-    <th scope="col">Edit</th>
+    <th scope="col">Details</th>
   </tr>
   </thead>
   <tbody>
@@ -16,11 +16,11 @@
     <td>{{account.fullName}}</td>
     <td><span class="small bg-primary text-white p-1 px-5 rounded-2">{{account.accountType}}</span></td>
     <td>{{account.currencyCode}}</td>
-    <td>{{account.balance}}</td>
+    <td>{{account.balance | currency: getCurrencyCode(account.currencyCode)}}</td>
     <td>
       <a routerLink="{{account.accountNumber}}">
         <button class="btn btn-primary text-white">
-          <span class="small">Edit</span>
+          <span class="small">View</span>
         </button>
       </a>
     </td>

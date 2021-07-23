@@ -67,11 +67,17 @@ namespace Infrastructure.Data.Migrations
                     b.Property<string>("CurrencyCode")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
+                    b.Property<DateTime>("DateOfTransfer")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<uint>("From")
                         .HasColumnType("int unsigned");
 
                     b.Property<bool>("IsSuccessful")
                         .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("SortCode")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<uint>("To")
                         .HasColumnType("int unsigned");
