@@ -5,5 +5,14 @@
 .hover-button {
   padding: 10px;
   border-radius: 5px;
-  background-color: rgba(110, 114, 127, 0.5);
+  transition: 250ms ease-in-out;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(110, 114, 127, 0.5);
+  }
+}
+
+.header {
+  font-size: 2em;
 }
