@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Core.Specs;
+
 namespace Core.Interfaces
 {
     public interface IBankingAccount
@@ -10,5 +12,10 @@ namespace Core.Interfaces
         Task<bool> Delete(Guid id);
         Task<List<BankAccount.BankAccount>> GetMany();
         Task<BankAccount.BankAccount> GetAccount(int accountNumber);
+    }
+
+    public interface ISearch
+    {
+        Task<List<BankAccount.BankAccount>> GetAccounts(BankingSpecs bankingSpecs);
     }
 }

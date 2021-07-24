@@ -30,7 +30,7 @@
     <h4 class="small">Deposit to your account:</h4>
     <hr>
     Enter your amount - {{getCurrencyCode(account.currencyCode)}}
-    <input type="number" class="form-control my-3" [(ngModel)]="depositAmount" [ngModelOptions]="{standalone:true}">
+    <input type="number"class="form-control my-3" [(ngModel)]="depositAmount" [ngModelOptions]="{standalone:true}">
     <p class="d-flex justify-content-between">
       <span>Current Balance:</span>
       <span class="fw-bold">{{account.balance | currency: getCurrencyCode(account.currencyCode)}}</span>

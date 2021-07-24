@@ -6,6 +6,7 @@ using AutoMapper;
 using Core.BankAccount;
 using Core.DTO;
 using Core.Interfaces;
+using Core.Specs;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BankApplication.Controllers
@@ -14,17 +15,19 @@ namespace BankApplication.Controllers
     {
         private readonly IBankingAccount _bankingAccount;
         private readonly IMapper _mapper;
+        private readonly ISearch _search;
 
-        public BankingController(IBankingAccount bankingAccount, IMapper mapper)
+        public BankingController(IBankingAccount bankingAccount, IMapper mapper, ISearch search)
         {
             _bankingAccount = bankingAccount;
             _mapper = mapper;
+            _search = search;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetBankAccounts()
+        public async Task<IActionResult> GetBankAccounts([FromQuery]BankingSpecs specs)
         {
-            var bankAccounts = await _bankingAccount.GetMany();
+            var bankAccounts = await _search.GetAccounts(specs);
             return Ok(bankAccounts);
         }
 

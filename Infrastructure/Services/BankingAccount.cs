@@ -4,12 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Core.BankAccount;
 using Core.Interfaces;
+using Core.Specs;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Services
 {
-    public class BankingAccount : IBankingAccount
+    public class BankingAccount : IBankingAccount, ISearch
     {
         private readonly BankContext _context;
 
@@ -38,7 +39,7 @@ namespace Infrastructure.Services
             var randomNum = new Random();
 
             var num = randomNum.Next(10000000, 99999999);
-            return (uint)num;
+            return (uint) num;
         }
 
         private string GenerateSortCode()
@@ -70,6 +71,7 @@ namespace Infrastructure.Services
                 _context.BankAccounts.Update(ba);
                 result = await _context.SaveChangesAsync();
             }
+
             if (result <= 0) return null;
             return ba;
         }
@@ -85,6 +87,7 @@ namespace Infrastructure.Services
                 _context.BankAccounts.Remove(ba);
                 result = await _context.SaveChangesAsync();
             }
+
             if (result <= 0) return false;
             return true;
         }
@@ -102,6 +105,23 @@ namespace Infrastructure.Services
                 => f.AccountNumber == accountNumber);
 
             return account;
+        }
+
+        public async Task<List<BankAccount>> GetAccounts(BankingSpecs bankingSpecs)
+        {
+            var list = await _context.BankAccounts
+                .Where(sq =>
+                    (string.IsNullOrEmpty(bankingSpecs.Search)
+                     || sq.FullName.Contains(bankingSpecs.Search)
+                     || sq.City.Contains(bankingSpecs.Search)
+                     || sq.AddressLine1.Contains(bankingSpecs.Search)
+                     || sq.FullName.Contains(bankingSpecs.Search)) &&
+                    (bankingSpecs.Account == 0 || sq.AccountNumber == bankingSpecs.Account))
+                .Skip(bankingSpecs.Skip)
+                .Take(bankingSpecs.Take)
+                .ToListAsync();
+
+            return list;
         }
     }
 }

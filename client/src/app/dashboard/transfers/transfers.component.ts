@@ -21,6 +21,8 @@ export class TransfersComponent implements OnInit {
   convertedAmount: number = 0;
   loading = false;
   modalRef: BsModalRef;
+  accountToNumber: number;
+  accountFromNumber: number;
 
 
   constructor(private dashService: DashboardService, private router: ActivatedRoute,
@@ -35,18 +37,23 @@ export class TransfersComponent implements OnInit {
   }
 
   getFromAccount() {
-    if (this.From)
+    if (this.From && this.dashService.selectedFrom == null)
       this.dashService.getBankAccount(+this.From).subscribe(res => {
         this.selectedFrom = res;
+        this.dashService.setFrom(res);
       });
+    else
+      this.selectedFrom = this.dashService.selectedFrom;
   }
 
   getToAccount() {
-    if (this.To)
+    if (this.To && this.dashService.selectedTo == null)
       this.dashService.getBankAccount(+this.To).subscribe(res => {
         this.selectedTo = res;
-        console.log(this.selectedTo);
+        this.dashService.setTo(res);
       });
+    else
+      this.selectedTo = this.dashService.selectedTo;
   }
 
   private getParams() {
@@ -61,20 +68,17 @@ export class TransfersComponent implements OnInit {
   }
 
   calculateTotal(amount: number) {
-    console.log(this.selectedCurrency, this.selectedFrom.currencyCode)
     if (this.selectedCurrency === "USD") {
-      if (this.selectedFrom.currencyCode === "GBP") this.convertedAmount = amount * 0.73;
-      if (this.selectedFrom.currencyCode === "ZAR") this.convertedAmount = amount * 14.78;
+      if (this.selectedFrom.currencyCode === "GBP") return this.convertedAmount = amount * 0.73;
+      if (this.selectedFrom.currencyCode === "ZAR") return this.convertedAmount = amount * 14.78;
     } else if (this.selectedCurrency === "GBP") {
-      if (this.selectedFrom.currencyCode === "USD") this.convertedAmount = amount * 1.37;
-      if (this.selectedFrom.currencyCode === "ZAR") this.convertedAmount = amount * 20.28;
+      if (this.selectedFrom.currencyCode === "USD") return this.convertedAmount = amount * 1.37;
+      if (this.selectedFrom.currencyCode === "ZAR") return this.convertedAmount = amount * 20.28;
     } else {
-      if (this.selectedFrom.currencyCode === "GBP") this.convertedAmount = amount * 0.049;
-      if (this.selectedFrom.currencyCode === "USD") this.convertedAmount = amount * 0.068;
+      if (this.selectedFrom.currencyCode === "GBP") return this.convertedAmount = amount * 0.049;
+      if (this.selectedFrom.currencyCode === "USD") return this.convertedAmount = amount * 0.068;
     }
-
-    return amount
-
+    return this.convertedAmount = amount;
   }
 
   overdraft() {
@@ -124,5 +128,29 @@ export class TransfersComponent implements OnInit {
 
   decline() {
     this.modalRef.hide();
+  }
+
+  inputToAccount() {
+    if (this.accountToNumber.toString().length === 8)
+      this.toAccount();
+  }
+
+  toAccount() {
+    this.dashService.getBankAccount(this.accountToNumber).subscribe(res => {
+      this.selectedTo = res;
+      this.dashService.setTo(res);
+    });
+  }
+
+  inputFromAccount() {
+    if (this.accountFromNumber.toString().length === 8)
+      this.FromAccount();
+  }
+
+  FromAccount() {
+    this.dashService.getBankAccount(this.accountFromNumber).subscribe(res => {
+      this.selectedFrom = res;
+      this.dashService.setFrom(res);
+    });
   }
 }

@@ -3,12 +3,19 @@
     <h6>From:</h6>
     <div *ngIf="selectedFrom === null">
       <p>Please select a Account</p>
-      <button routerLink="/account" class="btn btn-primary text-white">View Accounts</button>
+      <button routerLink="/account" class="btn btn-primary text-white mb-3">View Accounts</button>
+      <br>
+      <span class="fw-bold">or enter:</span>
+      <br>
+      <label class="mt-3" for="Account">Account Number:</label>
+      <input (input)="inputFromAccount()" id="Account" minlength="8" maxlength="8" [(ngModel)]="accountFromNumber" [ngModelOptions]="{standalone: true}" type="text" placeholder="76024596"
+             aria-describedby="button-addon1"
+             class="form-control border-0 bg-light">
     </div>
     <div *ngIf="selectedFrom !== null">
       <div class="d-flex justify-content-between p-2">
         <span>{{selectedFrom.accountNumber}} - {{selectedFrom.fullName}}</span>
-        <span routerLink="/account" style="cursor: pointer" class="small bg-primary text-white p-1 px-5 rounded-2">Select Different Account</span>
+        <span (click)="selectedFrom = null" style="cursor: pointer" class="small bg-primary text-white p-1 px-5 rounded-2">Select Different Account</span>
       </div>
       <hr>
       <div class="d-flex justify-content-between p-2">
@@ -58,12 +65,19 @@
     <h6>To:</h6>
     <div *ngIf="selectedTo === null">
       <p>Please select a Account</p>
-      <button routerLink="/account" class="btn btn-primary text-white">View Accounts</button>
+      <button routerLink="/account" class="btn btn-primary text-white mb-3">View Accounts</button>
+      <br>
+      <span class="fw-bold">or enter:</span>
+      <br>
+      <label class="mt-3" for="to">Account Number:</label>
+      <input (input)="inputToAccount()" id="to" minlength="8" maxlength="8" [(ngModel)]="accountToNumber" [ngModelOptions]="{standalone: true}" type="text" placeholder="76024596"
+             aria-describedby="button-addon1"
+             class="form-control border-0 bg-light">
     </div>
     <div *ngIf="selectedTo !== null">
       <div class="d-flex justify-content-between p-2">
         <span>{{selectedTo.accountNumber}} - {{selectedTo.fullName}}</span>
-        <span routerLink="/account" style="cursor: pointer" class="small bg-primary text-white p-1 px-5 rounded-2">Select Different Account</span>
+        <span (click)="selectedTo = null" style="cursor: pointer" class="small bg-primary text-white p-1 px-5 rounded-2">Select Different Account</span>
       </div>
       <hr>
       <div class="d-flex justify-content-between p-2">

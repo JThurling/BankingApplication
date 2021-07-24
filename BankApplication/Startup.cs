@@ -57,6 +57,7 @@ namespace BankApplication
 
             services.AddScoped<IBankingAccount, BankingAccount>();
             services.AddScoped<ITransfer, Transfer>();
+            services.AddScoped<ISearch, BankingAccount>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

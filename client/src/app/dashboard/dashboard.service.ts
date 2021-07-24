@@ -1,10 +1,11 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {Bankaccount} from "../shared/models/bankaccount";
 import {environment} from "../../environments/environment";
 import {Observable} from "rxjs";
 import {Transfers} from "../shared/models/transfer";
 import {FormBuilder, FormGroup} from "@angular/forms";
+import {SearchSpecs} from "../shared/models/specs";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,9 @@ export class DashboardService {
   url = environment.apiUrl;
   params = {};
   accountForm: FormGroup = this.formbuilder.group({});
-
+  searchSpecs: SearchSpecs;
+  selectedFrom: Bankaccount = null;
+  selectedTo: Bankaccount = null;
 
   constructor(private http: HttpClient, private formbuilder: FormBuilder) {
   }
@@ -33,6 +36,14 @@ export class DashboardService {
 
   clearParams() {
     this.params = {};
+    this.selectedFrom = null;
+    this.selectedTo = null;
+    return this.params;
+  }
+
+  setParams(acc1: number, acc2: number){
+    this.params['To'] = acc1;
+    this.params['From'] = acc2;
     return this.params;
   }
 
@@ -99,5 +110,25 @@ export class DashboardService {
 
 
     return this.http.post<Bankaccount>(this.url + 'banking/personal/' + account.id, formData).pipe();
+  }
+
+  onSearch(search: string, accountNumber: number) {
+    let queryParams = new HttpParams();
+    if (search) {
+      queryParams = queryParams.set('search', search);
+    }
+    if (accountNumber) {
+      queryParams = queryParams.set('account', accountNumber.toString());
+    }
+
+    return this.http.get<Bankaccount[]>(this.url + "banking", {params: queryParams}).pipe();
+  }
+
+  setFrom(res: Bankaccount) {
+    this.selectedFrom = res;
+  }
+
+  setTo(res: Bankaccount) {
+    this.selectedTo = res;
   }
 }

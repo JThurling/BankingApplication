@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {DashboardService} from "../dashboard.service";
 import {Bankaccount} from "../../shared/models/bankaccount";
+import {SearchSpecs} from "../../shared/models/specs";
 
 @Component({
   selector: 'app-accounts',
@@ -9,6 +10,8 @@ import {Bankaccount} from "../../shared/models/bankaccount";
 })
 export class AccountsComponent implements OnInit {
   Accounts: Bankaccount[];
+  search: string = null;
+  accountNumber: number = null;
 
   constructor(private dashService: DashboardService) { }
 
@@ -20,5 +23,14 @@ export class AccountsComponent implements OnInit {
 
   getCurrencyCode(currencyCode: string) {
     return this.dashService.getCurrencyCode(currencyCode);
+  }
+
+  onSearch() {
+    console.log("searching...")
+    this.dashService.onSearch(this.search, this.accountNumber).subscribe(res => {
+      this.Accounts = res;
+    }, error => {
+      console.log(error)
+    });
   }
 }
