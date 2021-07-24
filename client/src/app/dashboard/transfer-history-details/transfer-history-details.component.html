@@ -1,0 +1,109 @@
+<a class="pt-5" style="text-decoration: none" routerLink="/transfer-history">
+  <span>
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-circle"
+         viewBox="0 0 16 16">
+  <path fill-rule="evenodd"
+        d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+</svg>
+    <span class="ms-2 pt-5 text">Back</span>
+  </span>
+</a>
+
+<div class="col-12 p-3 border mt-3 text rounded-2 border-primary shadow-sm">
+  <h6>Transfer details</h6>
+  <hr>
+  <div class="row">
+    <div *ngIf="selectedFrom !== null" class="col-md-4 col-sm-12">
+      <h1 class="small"><span class="fw-bold">From:</span> Account</h1>
+      <div class="d-flex justify-content-between p-2">
+        <span>{{selectedFrom.accountNumber}} - {{selectedFrom.fullName}}</span>
+      </div>
+      <hr>
+
+      <div class="d-flex justify-content-between p-2">
+        <span>Postal Code:</span>
+        <span>{{selectedFrom.postalCode}}</span>
+      </div>
+      <div class="d-flex justify-content-between p-2">
+        <span>Sort Code:</span>
+        <span>{{selectedFrom.sortCode}}</span>
+      </div>
+      <div class="d-flex justify-content-between p-2">
+        <span>Currency Code:</span>
+        <span>{{selectedFrom.currencyCode}}</span>
+      </div>
+      <div class="d-flex justify-content-between p-2">
+        <span>Current Balance:</span>
+        <span class="fw-bold">{{selectedFrom.balance | currency: getCurrencyCode(selectedFrom.currencyCode)}}</span>
+      </div>
+      <div class="d-flex justify-content-between p-2">
+        <span>Account Type:</span>
+        <span class="small bg-primary text-white p-1 px-5 rounded-2">{{selectedFrom.accountType}}</span>
+      </div>
+    </div>
+    <div *ngIf="selectedTo !== null" class="col-md-4 col-sm-12">
+      <h1 class="small"><span class="fw-bold">To:</span> Account</h1>
+      <div class="d-flex justify-content-between p-2">
+        <span>{{selectedTo.accountNumber}} - {{selectedTo.fullName}}</span>
+      </div>
+      <hr>
+
+      <div class="d-flex justify-content-between p-2">
+        <span>Postal Code:</span>
+        <span>{{selectedTo.postalCode}}</span>
+      </div>
+      <div class="d-flex justify-content-between p-2">
+        <span>Sort Code:</span>
+        <span>{{selectedTo.sortCode}}</span>
+      </div>
+      <div class="d-flex justify-content-between p-2">
+        <span>Currency Code:</span>
+        <span>{{selectedTo.currencyCode}}</span>
+      </div>
+      <div class="d-flex justify-content-between p-2">
+        <span>Current Balance:</span>
+        <span class="fw-bold">{{selectedTo.balance | currency: getCurrencyCode(selectedTo.currencyCode)}}</span>
+      </div>
+      <div class="d-flex justify-content-between p-2">
+        <span>Account Type:</span>
+        <span class="small bg-primary text-white p-1 px-5 rounded-2">{{selectedTo.accountType}}</span>
+      </div>
+    </div>
+    <div class="col-md-4 col-sm-12">
+      <h1 class="small">Transfer Details</h1>
+      <div class="d-flex justify-content-between p-2">
+        <span><span class="fw-bold">From:</span> {{Transfer.from}}</span>
+        <span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right"
+               viewBox="0 0 16 16">
+  <path fill-rule="evenodd"
+        d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+</svg>
+        </span>
+        <span><span class="fw-bold">To:</span> {{Transfer.to}}</span>
+      </div>
+      <hr>
+      <div class="d-flex justify-content-between p-2">
+        <span>Date Transfers:</span>
+        <span>{{Transfer.dateOfTransfer | date}}</span>
+      </div>
+      <div class="d-flex justify-content-between p-2">
+        <span>Sort Code:</span>
+        <span>{{Transfer.sortCode}}</span>
+      </div>
+      <div class="d-flex justify-content-between p-2">
+        <span>Transfered Currency:</span>
+        <span>{{Transfer.currencyCode}}</span>
+      </div>
+      <div class="d-flex justify-content-between p-2">
+        <span>Amount Transfered:</span>
+        <span class="fw-bold">{{Transfer.amount | currency: getCurrencyCode(Transfer.currencyCode)}}</span>
+      </div>
+      <div class="d-flex justify-content-between p-2">
+        <span>Status:</span>
+        <span [style.background-color]="Transfer.isSuccessful ? 'green' : 'red'"
+              class="small px-5 text-white p-1 rounded-2">{{Transfer.isSuccessful ? "Successful" : "Failed"}}</span>
+      </div>
+    </div>
+  </div>
+</div>

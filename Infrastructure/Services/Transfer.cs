@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Core.BankAccount;
 using Core.Interfaces;
@@ -22,17 +23,19 @@ namespace Infrastructure.Services
 
         }
 
-        public async Task<bool> TransferMoney(Transfers transfer)
+        public async Task<Transfers> TransferMoney(Transfers transfer)
         {
             var acc1 = await _context.BankAccounts.FirstOrDefaultAsync(acc => acc.AccountNumber == transfer.From);
             var acc2 = await _context.BankAccounts.FirstOrDefaultAsync(acc => acc.AccountNumber == transfer.To);
 
 
-            if (acc1 == null || acc2 == null) return false;
+            if (acc1 == null || acc2 == null) return null;
 
             decimal converted = getConvertedAmount(acc1, acc2, transfer.Amount);
 
-            if (converted < acc1.Balance)
+            var isValid = converted < acc1.Balance;
+
+            if (isValid)
             {
                 acc1.Balance -= converted;
                 acc2.Balance += transfer.Amount;
@@ -46,7 +49,7 @@ namespace Infrastructure.Services
                 CurrencyCode = transfer.CurrencyCode,
                 From = acc1.AccountNumber,
                 To = acc2.AccountNumber,
-                IsSuccessful = converted < acc1.Balance,
+                IsSuccessful = isValid,
                 SortCode = acc2.SortCode
             };
 
@@ -54,9 +57,19 @@ namespace Infrastructure.Services
 
             var result = await _context.SaveChangesAsync();
 
-            if (result <= 0) return false;
+            if (result <= 0) return null;
 
-            return true;
+            return tr;
+        }
+
+        public async Task<List<Transfers>> GetTransferList()
+        {
+            return await _context.Transfers.ToListAsync();
+        }
+
+        public async Task<Transfers> GetTransferRecord(Guid id)
+        {
+            return await _context.Transfers.FirstOrDefaultAsync(tr => tr.Id == id);
         }
 
         public decimal getConvertedAmount(BankAccount acc1, BankAccount acc2, decimal amount)

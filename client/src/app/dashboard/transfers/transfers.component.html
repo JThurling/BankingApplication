@@ -1,5 +1,5 @@
 <div class="row text p-3">
-  <div class="col-sm p-3 background">
+  <div class="col-sm p-3 shadow-sm border border-primary rounded-2">
     <h6>From:</h6>
     <div *ngIf="selectedFrom === null">
       <p>Please select a Account</p>
@@ -54,7 +54,7 @@
             d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5zm14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5z"/>
     </svg>
   </div>
-  <div class="col-sm ms-2 p-3 background">
+  <div class="col-sm ms-2 p-3 rounded-2 shadow-sm border border-primary">
     <h6>To:</h6>
     <div *ngIf="selectedTo === null">
       <p>Please select a Account</p>
@@ -95,5 +95,4 @@
     <span class="spinner-border make-small small"></span>
     <span class="small ms-2">Transfering</span>
   </span>
-
 </button>

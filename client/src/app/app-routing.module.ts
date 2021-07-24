@@ -4,12 +4,16 @@ import {DashboardComponent} from "./dashboard/dashboard.component";
 import {AccountsComponent} from "./dashboard/accounts/accounts.component";
 import {TransfersComponent} from "./dashboard/transfers/transfers.component";
 import {AccountDetailsComponent} from "./dashboard/account-details/account-details.component";
+import {TransferHistoryComponent} from "./dashboard/transfer-history/transfer-history.component";
+import {TransferHistoryDetailsComponent} from "./dashboard/transfer-history-details/transfer-history-details.component";
 
 const routes: Routes = [
   {path: '', component: DashboardComponent, children: [
       {path: 'account', component: AccountsComponent},
       {path: 'account/:accountNumber', component: AccountDetailsComponent},
-      {path: 'transfers', component: TransfersComponent}
+      {path: 'transfers', component: TransfersComponent},
+      {path: 'transfer-history', component: TransferHistoryComponent},
+      {path: 'transfer-history/:id', component: TransferHistoryDetailsComponent},
     ]},
 
   {path: '**', component: DashboardComponent}

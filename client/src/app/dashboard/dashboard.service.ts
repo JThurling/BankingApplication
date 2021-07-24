@@ -47,4 +47,12 @@ export class DashboardService {
         return "R ";
     }
   }
+
+  getTransferList(): Observable<Transfers[]>{
+    return this.http.get<Transfers[]>(this.url + "transfer").pipe()
+  }
+
+  getTransfer(id: string): Observable<Transfers>{
+    return this.http.get<Transfers>(this.url + "transfer/" + id).pipe()
+  }
 }

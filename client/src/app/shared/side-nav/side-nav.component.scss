@@ -20,3 +20,45 @@
 .active {
   background-color: rgba(110, 114, 127, 0.5);
 }
+
+accordion-group {
+  ::ng-deep {
+    &:focus {
+      outline: none;
+    }
+
+    div {
+      border: none;
+      background-color: #2f2f40;
+      color: black;
+
+      &>div.panel-heading.card-header.panel-enabled{
+        background-color: #2f2f40; // change the background of every accordion heading
+        padding: 3px;
+
+        &:focus {
+          outline: none;
+        }
+
+        .btn-link:focus { // change the accordion heading buttons style
+          text-decoration: none;
+
+          //padding: 0px;
+          &:focus {
+            outline: none;
+          }
+        }
+
+        .btn:focus {
+          -webkit-box-shadow: none!important;
+          box-shadow: none!important;
+        }
+      }
+
+      &>div.panel-collapse.collapse.in.show>div {
+        background-color: #2f2f40; // change the expanded content style
+        border: none;
+      }
+    }
+  }
+}
