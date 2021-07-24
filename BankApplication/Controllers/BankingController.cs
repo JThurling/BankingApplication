@@ -36,7 +36,7 @@ namespace BankApplication.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateNewBankAccount([FromBody] BankAccountDto bankAccountDto)
+        public async Task<IActionResult> CreateNewBankAccount([FromForm] BankAccountDto bankAccountDto)
         {
             var mappedBankAccount = _mapper.Map<BankAccount>(bankAccountDto);
 
@@ -45,14 +45,24 @@ namespace BankApplication.Controllers
             return Ok(true);
         }
 
-        [HttpPost("{id}")]
+        [HttpPost("deposit/{id}")]
         public async Task<IActionResult> UpdateBankAccount([FromBody] BankAccountDto bankAccountDto, Guid id)
         {
             var mappedBankAccount = _mapper.Map<BankAccount>(bankAccountDto);
 
             var result = await _bankingAccount.Update(mappedBankAccount, id);
-            if (!result) return BadRequest("There has been an error");
-            return Ok(true);
+            if (result == null) return BadRequest("There has been an error");
+            return Ok(result);
+        }
+
+        [HttpPost("personal/{id}")]
+        public async Task<IActionResult> UpdateFormBankAccount([FromForm] BankAccountDto bankAccountDto, Guid id)
+        {
+            var mappedBankAccount = _mapper.Map<BankAccount>(bankAccountDto);
+
+            var result = await _bankingAccount.Update(mappedBankAccount, id);
+            if (result == null) return BadRequest("There has been an error");
+            return Ok(result);
         }
 
         [HttpDelete("{id}")]

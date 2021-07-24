@@ -1,4 +1,4 @@
-<a class="pt-5" style="text-decoration: none" routerLink="/account">
+<a class="offset-2" style="text-decoration: none" routerLink="/account">
   <span>
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-circle"
          viewBox="0 0 16 16">
@@ -9,45 +9,87 @@
   </span>
 </a>
 
-<div class="row text p-3 h-100">
-  <div class="col-4 p-3 background">
-    <h3>Account</h3>
-    <hr>
-    <p class="d-flex justify-content-between"><span>Account Number:</span><span
-      class="ms-2">{{Accounts.accountNumber}}</span></p>
-    <p class="d-flex justify-content-between"><span>Account Type:</span> <span
-      class="small bg-primary text-white p-1 px-5 rounded-2 ms-3">{{Accounts.accountType}}</span></p>
-    <p class="d-flex justify-content-between"><span>Sort Code:</span> <span>{{Accounts.sortCode}}</span></p>
+<div class="text p-3">
+  <div class="offset-2 col-lg-8 row border-primary shadow-sm border rounded-2 p-3">
+    <div class="col-lg-12 p-3">
+      <h3 class="small">Personal Details</h3>
+      <hr>
+      <p class="d-flex justify-content-between"><span>Full Name:</span><span class="ms-2">{{Accounts.fullName}}</span></p>
+      <p class="d-flex justify-content-between"><span>Address:</span><span class="ms-2">{{Accounts.addressLine1}}
+        , {{Accounts.city}}</span></p>
+      <p class="d-flex justify-content-between"><span>Postal Code:</span> <span class="">{{Accounts.postalCode}}</span>
+      </p>
+      <button class="float-end btn btn-primary text-white" (click)="openDepositModal(template)">Edit Personal Details</button>
+    </div>
+
+    <div class="col-lg-12 p-3 border-right">
+      <h3 class="small">Account</h3>
+      <hr>
+      <p class="d-flex justify-content-between"><span>Account Number:</span><span
+        class="ms-2">{{Accounts.accountNumber}}</span></p>
+      <p class="d-flex justify-content-between"><span>Sort Code:</span> <span>{{Accounts.sortCode}}</span></p>
+      <p class="d-flex justify-content-between"><span>Currency Code:</span><span
+        class="ms-2">{{Accounts.currencyCode}}</span></p>
+      <p class="d-flex justify-content-between"><span>Account Type:</span> <span
+        class="small bg-primary text-white p-1 px-5 rounded-2 ms-3">{{Accounts.accountType}}</span></p>
+      <p class="d-flex justify-content-between"><span>Balance Available:</span> <span
+        class="fw-bold">{{Accounts.balance | currency: getCurrencyCode(Accounts.currencyCode)}}</span></p>
+    </div>
   </div>
-  <div class="col-4 ms-2 p-3 background">
-    <h3>Financial</h3>
-    <hr>
-    <p class="d-flex justify-content-between"><span>Currency Code:</span><span
-      class="ms-2">{{Accounts.currencyCode}}</span></p>
-    <p class="d-flex justify-content-between"><span>Balance Available:</span> <span
-      class="fw-bold">{{Accounts.balance | currency: getCurrencyCode(Accounts.currencyCode)}}</span></p>
-    <button class="float-end btn btn-primary text-white">Deposit</button>
-  </div>
-  <div class="col-sm ms-2 p-3 background">
-    <h3>Personal Details - {{Accounts.fullName}}</h3>
-    <hr>
-    <p class="d-flex justify-content-between"><span>Address:</span><span class="ms-2">{{Accounts.addressLine1}}
-      , {{Accounts.city}}</span></p>
-    <p class="d-flex justify-content-between"><span>Postal Code:</span> <span class="">{{Accounts.postalCode}}</span>
-    </p>
-    <button class="float-end btn btn-primary text-white">Edit Personal Details</button>
-  </div>
-</div>
-<div class="row text px-3 h-100">
-  <div class="col-4 p-3 background">
-    <h3>Use this account for transfer:</h3>
+  <div class="col-md-12 offset-2 col-lg-8 col-sm-12 p-3 border border-primary background rounded-2 mt-2">
+    <h3 class="small">Use this account for transfer:</h3>
     <hr>
     <p class="d-flex justify-content-between me-3">
-      <span style="cursor: pointer" (click)="setFromQueryParam(Accounts.accountNumber)" class="small bg-primary text-white p-1 px-3 rounded-2">Transfer <span class="fw-bold">from</span> this account</span>
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-right ms-3 mt-2" viewBox="0 0 16 16">
-        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+        <span style="cursor: pointer" (click)="setFromQueryParam(Accounts.accountNumber)"
+              class="small bg-primary text-white p-1 px-3 rounded-2">Transfer <span class="fw-bold">from</span> this account</span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+           class="bi bi-arrow-right ms-3 mt-2" viewBox="0 0 16 16">
+        <path fill-rule="evenodd"
+              d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
       </svg>
-      <span style="cursor: pointer" (click)="setToQueryParam(Accounts.accountNumber)" class="small bg-primary text-white p-1 px-3 rounded-2 ms-3">Transfer <span class="fw-bold">to</span> this account</span>
+      <span style="cursor: pointer" (click)="setToQueryParam(Accounts.accountNumber)"
+            class="small bg-primary text-white p-1 px-3 rounded-2 ms-3">Transfer <span class="fw-bold">to</span> this account</span>
     </p>
   </div>
 </div>
+
+<ng-template #template>
+  <form [formGroup]="createAccountForm" class="p-3" (ngSubmit)="onSubmit()">
+    <h1 class="small">Edit account - <span class="fw-bold">* required fields</span></h1>
+    <hr>
+    <div class="row">
+      <div class="col-sm-12 mb-3">
+        <label for="fullname">* Full Name:</label>
+        <input id="fullname" formControlName="fullname" type="text" placeholder="John Smith"
+               aria-describedby="button-addon1"
+               class="form-control border-0 bg-light">
+      </div>
+      <div class="col-sm-12">
+        <label for="post">* Postal Code:</label>
+        <input id="post" formControlName="postalCode" type="text" placeholder="OX49 5NU"
+               aria-describedby="button-addon1"
+               class="form-control border-0 bg-light">
+      </div>
+      <div class="col-md-12 my-3">
+        <label for="address">* Street Address:</label>
+        <input id="address" formControlName="addressLine1" type="text" placeholder="Unit 8, Ventura Business Park"
+               aria-describedby="button-addon1"
+               class="form-control border-0 bg-light">
+      </div>
+
+      <div class="col-sm-12 mb-3">
+        <label for="city">* City:</label>
+        <input id="city" formControlName="city" type="text" placeholder="Oxfordshire"
+               aria-describedby="button-addon1"
+               class="form-control border-0 bg-light">
+      </div>
+    </div>
+    <button [disabled]="!createAccountForm.valid" type="submit" class="btn btn-primary text-white mt-5 float-end">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
+        <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+        <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+      </svg>
+      <span class="fw-bold ms-2">Update Account</span>
+    </button>
+  </form>
+</ng-template>

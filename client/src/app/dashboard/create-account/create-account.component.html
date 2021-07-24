@@ -1,1 +1,67 @@
-<p>create-account works!</p>
+<div class="col-12 p-3 border mt-3 text rounded-2 border-primary shadow-sm">
+  <form [formGroup]="createAccountForm" (ngSubmit)="onSubmit()">
+    <h1 class="small">Create a new account - <span class="fw-bold">* required fields</span></h1>
+    <hr>
+    <div class="row">
+      <div class="col-sm-12 col-md-6">
+        <label for="fullname">* Full Name:</label>
+        <input id="fullname" formControlName="fullname" type="text" placeholder="John Smith"
+               aria-describedby="button-addon1"
+               class="form-control border-0 bg-light">
+      </div>
+      <div class="col-sm-12 col-md-6">
+        <label for="post">* Postal Code:</label>
+        <input id="post" formControlName="postalCode" type="text" placeholder="OX49 5NU"
+               aria-describedby="button-addon1"
+               class="form-control border-0 bg-light">
+      </div>
+      <div class="col-md-12 my-3">
+        <label for="address">* Street Address:</label>
+        <input id="address" formControlName="addressLine1" type="text" placeholder="Unit 8, Ventura Business Park"
+               aria-describedby="button-addon1"
+               class="form-control border-0 bg-light">
+      </div>
+
+      <div class="col-sm-12 col-md-6 mb-3">
+        <label for="city">* City:</label>
+        <input id="city" formControlName="city" type="text" placeholder="Oxfordshire"
+               aria-describedby="button-addon1"
+               class="form-control border-0 bg-light">
+      </div>
+
+      <div class="col-sm-12 col-md-6 mb-3">
+        <div class="d-flex justify-content-between">
+          <label for="amount">* Initial Amount:</label>
+          <span class="fw-bold">{{ 100 | currency: getCurrencyCode(createAccountForm.value.currencyCode)}} minimum</span>
+        </div>
+        <input id="amount" formControlName="balance" type="text" placeholder="10 000"
+               aria-describedby="button-addon1"
+               class="form-control border-0 bg-light">
+      </div>
+
+      <div class="col-md-6 col-sm-12">
+        <label for="address">Account Type:</label>
+        <select class="form-select border-0 bg-light" formControlName="accountType">
+          <option *ngFor="let accountType of accountTypes">
+            {{accountType}}
+          </option>
+        </select>
+      </div>
+      <div class="col-sm-12 col-md-6">
+        <label for="address">Currency Code:</label>
+        <select class="form-select border-0 bg-light" formControlName="currencyCode">
+          <option *ngFor="let code of currencyCode">
+            {{code}}
+          </option>
+        </select>
+      </div>
+    </div>
+    <button [disabled]="!createAccountForm.valid" type="submit" class="btn btn-primary text-white mt-5 float-end">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
+        <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+        <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+      </svg>
+      <span class="fw-bold ms-2">Create Account</span>
+    </button>
+  </form>
+</div>

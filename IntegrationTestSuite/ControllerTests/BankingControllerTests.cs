@@ -23,7 +23,7 @@ namespace IntegrationTestSuite.ControllerTests
             _httpClient = new HttpClient();
             _bankAccountDto = new BankAccountDto
             {
-                AccountType = AccountType.Company,
+                AccountType = "Company",
                 AddressLine1 = "100 lane something",
                 Balance = (decimal) 20.50,
                 City = "Alberton",
@@ -33,7 +33,7 @@ namespace IntegrationTestSuite.ControllerTests
             };
             _updateBankAccountDto = new BankAccountDto
             {
-                AccountType = AccountType.Personal,
+                AccountType = "Personal",
                 AddressLine1 = "100 lane something",
                 Balance = (decimal) 100.23,
                 City = "Alberton",

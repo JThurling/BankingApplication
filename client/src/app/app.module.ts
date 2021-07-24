@@ -10,13 +10,15 @@ import {TransfersComponent} from './dashboard/transfers/transfers.component';
 import {HttpClientModule} from "@angular/common/http";
 import {AccountDetailsComponent} from "./dashboard/account-details/account-details.component";
 import {DashHomeComponent} from './shared/dash-home/dash-home.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {TransferHistoryComponent} from './dashboard/transfer-history/transfer-history.component';
 import {TransferHistoryDetailsComponent} from './dashboard/transfer-history-details/transfer-history-details.component';
 import {AccordionModule} from "ngx-bootstrap/accordion";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { CreateAccountComponent } from './dashboard/create-account/create-account.component';
 import { DepositComponent } from './dashboard/deposit/deposit.component';
+import {ModalModule} from "ngx-bootstrap/modal";
+import {ToastrModule} from "ngx-toastr";
 
 @NgModule({
   declarations: [
@@ -38,7 +40,10 @@ import { DepositComponent } from './dashboard/deposit/deposit.component';
     HttpClientModule,
     FormsModule,
     AccordionModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ModalModule.forRoot(),
+    ToastrModule.forRoot(),
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,8 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, TemplateRef} from '@angular/core';
 import {Bankaccount} from "../../shared/models/bankaccount";
 import {DashboardService} from "../dashboard.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Transfers} from "../../shared/models/transfer";
+import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-transfers',
@@ -18,11 +20,12 @@ export class TransfersComponent implements OnInit {
   amount: number;
   convertedAmount: number = 0;
   loading = false;
+  modalRef: BsModalRef;
 
 
   constructor(private dashService: DashboardService, private router: ActivatedRoute,
-              private route: Router) {
-    this.route.routeReuseStrategy.shouldReuseRoute = () => false;
+              private route: Router, private modalService: BsModalService,
+              private toast: ToastrService) {
   }
 
   ngOnInit(): void {
@@ -79,15 +82,8 @@ export class TransfersComponent implements OnInit {
     return this.convertedAmount > this.selectedFrom.balance;
   }
 
-  clear() {
-    this.loading = true;
-    this.dashService.transfer(this.transfer()).subscribe(() => {
-      this.dashService.clearParams();
-      this.loading = true;
-      this.selectedTo = null;
-      this.selectedFrom = null;
-      this.route.navigate(['/account'], {queryParams: {To: null, From: null}, queryParamsHandling: 'merge'});
-    });
+  clear(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template)
   }
 
   transfer(): Transfers {
@@ -108,5 +104,25 @@ export class TransfersComponent implements OnInit {
 
   validateTransfer() {
     return this.validateCurrency() || this.overdraft();
+  }
+
+  confirm() {
+    this.loading = true;
+    this.dashService.transfer(this.transfer()).subscribe(() => {
+      this.dashService.clearParams();
+      this.loading = true;
+      this.selectedTo = null;
+      this.selectedFrom = null;
+      this.modalRef.hide();
+      this.toast.success("Transfer Successful");
+      this.route.navigate(['/account'], {queryParams: {To: null, From: null}, queryParamsHandling: 'merge'});
+    }, error => {
+      this.toast.error("Transfer Unsuccessful");
+      this.decline();
+    });
+  }
+
+  decline() {
+    this.modalRef.hide();
   }
 }

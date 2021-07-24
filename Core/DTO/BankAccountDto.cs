@@ -9,7 +9,7 @@ namespace Core.DTO
         public string FullName { get; set; }
 
         [Required]
-        public AccountType AccountType { get; set; }
+        public string AccountType { get; set; }
 
         [Required]
         public string AddressLine1 { get; set; }

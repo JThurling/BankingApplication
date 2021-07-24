@@ -23,7 +23,8 @@ namespace Infrastructure.Services
             bankAccount.AccountNumber = GenerateAccountNumber();
             bankAccount.SortCode = GenerateSortCode();
 
-            var doesExistCheck = _context.BankAccounts.FirstOrDefault(ba => ba.AccountNumber == bankAccount.AccountNumber);
+            var doesExistCheck = _context.BankAccounts.FirstOrDefault(ba
+                => ba.AccountNumber == bankAccount.AccountNumber || ba.AddressLine1 == bankAccount.AddressLine1);
             if (doesExistCheck != null) return false;
             await _context.BankAccounts.AddAsync(bankAccount);
             var result = await _context.SaveChangesAsync();
@@ -50,7 +51,7 @@ namespace Infrastructure.Services
             return $"26-{num1}-{num2}";
         }
 
-        public async Task<bool> Update(BankAccount bankAccount, Guid id)
+        public async Task<BankAccount> Update(BankAccount bankAccount, Guid id)
         {
             var ba = await _context.BankAccounts.FirstOrDefaultAsync(ba
                 => ba.Id == id);
@@ -69,8 +70,8 @@ namespace Infrastructure.Services
                 _context.BankAccounts.Update(ba);
                 result = await _context.SaveChangesAsync();
             }
-            if (result <= 0) return false;
-            return true;
+            if (result <= 0) return null;
+            return ba;
         }
 
         public async Task<bool> Delete(Guid id)

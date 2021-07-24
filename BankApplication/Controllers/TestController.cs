@@ -19,7 +19,7 @@ namespace BankApplication.Controllers
         {
             var bankDto = new BankAccountDto
             {
-                AccountType = AccountType.Company,
+                AccountType = "Personal",
                 AddressLine1 = "100 lane something",
                 Balance = (decimal) 20.50,
                 City = "Alberton",

@@ -23,10 +23,4 @@ namespace Core.BankAccount
 
         public decimal Balance { get; set; }
     }
-
-    public enum AccountType {
-        Personal,
-        Company,
-        Other
-    }
 }

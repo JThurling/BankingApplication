@@ -89,10 +89,22 @@
     </div>
   </div>
 </div>
-<button (click)="clear()" [disabled]="validateTransfer()" class="btn btn-primary float-end text-white text">
+<button (click)="clear(template)" [disabled]="validateTransfer()" class="btn btn-primary float-end text-white text">
  <span *ngIf="!loading">Transfer</span>
   <span *ngIf="loading">
     <span class="spinner-border make-small small"></span>
     <span class="small ms-2">Transfering</span>
   </span>
 </button>
+<ng-template #template>
+  <div class="modal-body text text-center">
+    <p>You are about to transfer <span class="fw-bold">{{amount | currency: getCurrencyCode(selectedTo.currencyCode)}}</span>.</p>
+    <p>Do you want to proceed?</p>
+    <button type="button" class="me-2 btn btn-outline-primary px-3" (click)="confirm()" >
+     <span class="fw-bold">Yes</span>
+    </button>
+    <button type="button" class="btn btn-primary text-white px-3" (click)="decline()" >
+      <span class="fw-bold">No</span>
+    </button>
+  </div>
+</ng-template>
