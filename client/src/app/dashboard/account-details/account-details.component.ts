@@ -6,6 +6,7 @@ import {HttpParams} from "@angular/common/http";
 import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ToastrService} from "ngx-toastr";
 import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
+import {Currency} from "../../shared/models/currency";
 
 
 @Component({
@@ -20,6 +21,7 @@ export class AccountDetailsComponent implements OnInit {
   createAccountForm: FormGroup;
   files: File[] = [];
   modalRef: BsModalRef;
+
 
   constructor(private dashService: DashboardService, private router: ActivatedRoute, private route: Router
     , private toast: ToastrService, private formBuilder: FormBuilder, private modalService: BsModalService,) {

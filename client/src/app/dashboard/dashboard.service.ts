@@ -6,6 +6,8 @@ import {Observable} from "rxjs";
 import {Transfers} from "../shared/models/transfer";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {SearchSpecs} from "../shared/models/specs";
+import {Currency} from "../shared/models/currency";
+import {Postcodes} from "../shared/models/Postcodes";
 
 @Injectable({
   providedIn: 'root'
@@ -130,5 +132,13 @@ export class DashboardService {
 
   setTo(res: Bankaccount) {
     this.selectedTo = res;
+  }
+
+  getCurrency(){
+    return this.http.get<Currency>('	https://openexchangerates.org/api/latest.json?app_id=684e0a2c071241f7af108d9cf47f507a&base=USD&symbols=ZAR%2CGBP').pipe();
+  }
+
+  getPostAddress(code: string) {
+    return this.http.get<Postcodes>('http://api.postcodes.io/postcodes/' + code).pipe();
   }
 }

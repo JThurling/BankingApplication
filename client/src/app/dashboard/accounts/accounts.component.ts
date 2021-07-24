@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {DashboardService} from "../dashboard.service";
 import {Bankaccount} from "../../shared/models/bankaccount";
-import {SearchSpecs} from "../../shared/models/specs";
+import {Currency} from "../../shared/models/currency";
 
 @Component({
   selector: 'app-accounts',
@@ -12,6 +12,7 @@ export class AccountsComponent implements OnInit {
   Accounts: Bankaccount[];
   search: string = null;
   accountNumber: number = null;
+  currency: Currency;
 
   constructor(private dashService: DashboardService) { }
 

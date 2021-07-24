@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {DashboardService} from "../dashboard.service";
 import {ToastrService} from "ngx-toastr";
+import {Postcodes} from "../../shared/models/Postcodes";
 
 @Component({
   selector: 'app-create-account',
@@ -13,6 +14,7 @@ export class CreateAccountComponent implements OnInit {
   currencyCode = ['USD', 'GBP', 'ZAR'];
   createAccountForm: FormGroup;
   files: File[] = [];
+  Address: Postcodes = null;
 
   constructor(private formBuilder: FormBuilder, private dashService: DashboardService
               ,private toast: ToastrService) { }
@@ -69,6 +71,15 @@ export class CreateAccountComponent implements OnInit {
       this.toast.success("Created Account");
     }, error => {
       this.toast.error("There was an error: \n Please check if account exists");
+    });
+  }
+
+  getPostData(post: HTMLInputElement) {
+    this.dashService.getPostAddress(post.value).subscribe(res => {
+      this.Address = res;
+      console.log(res);
+    }, error => {
+      console.log(error);
     });
   }
 }
