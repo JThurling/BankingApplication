@@ -1,46 +1,72 @@
 <app-dash-home></app-dash-home>
-<div class="d-flex justify-content-between text">
+<div class="text">
   <div class="row">
-    <div class="col-6">
+    <div class="col-lg-6 col-md-6 col-sm-12">
       <label for="search">Search:</label>
       <input (keydown.enter)="onSearch()" id="search" [(ngModel)]="search" [ngModelOptions]="{standalone: true}" type="text" placeholder="John Smith"
              aria-describedby="button-addon1"
              class="form-control border-0 bg-light">
     </div>
-    <div class="col-6">
+    <div class="col-lg-6 col-md-6 col-sm-12">
       <label for="Account">Account Number:</label>
       <input (keydown.enter)="onSearch()" id="Account" [(ngModel)]="accountNumber" [ngModelOptions]="{standalone: true}" type="text" placeholder="76024596"
              aria-describedby="button-addon1"
              class="form-control border-0 bg-light">
     </div>
+    <div class="col-md-12 mb-sm-3">
+      <button (click)="onSearch()" class="btn btn-primary mt-4 text-white">
+        Search
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi ms-2 bi-search" viewBox="0 0 16 16">
+          <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+        </svg>
+      </button>
+    </div>
   </div>
-  <div>
-    <button (click)="onSearch()" class="btn btn-primary mt-4 text-white">
-      Search
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi ms-2 bi-search" viewBox="0 0 16 16">
-        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-      </svg>
-    </button>
-  </div>
+
 </div>
-<table class="table text pt-2">
+<table *ngIf="!isSmall" class="table text pt-2">
   <thead>
   <tr>
-    <th scope="col">Account Number</th>
-    <th scope="col">Full Name</th>
-    <th scope="col">Account Type</th>
-    <th scope="col">Currency</th>
-    <th scope="col">Balance</th>
-    <th scope="col">Details</th>
+    <th>Account Number</th>
+    <th class=" ">Full Name</th>
+    <th class=" ">Account Type</th>
+    <th class=" ">Currency</th>
+    <th class=" ">Balance</th>
+    <th>Details</th>
   </tr>
   </thead>
   <tbody>
   <tr *ngFor="let account of Accounts">
-    <th scope="row">{{account.accountNumber}}</th>
-    <td>{{account.fullName}}</td>
+    <th>{{account.accountNumber}}</th>
+    <td class="">{{account.fullName}}</td>
     <td><span class="small bg-primary text-white p-1 px-5 rounded-2">{{account.accountType}}</span></td>
-    <td>{{account.currencyCode}}</td>
-    <td>{{account.balance | currency: getCurrencyCode(account.currencyCode)}}</td>
+    <td class="">{{account.currencyCode}}</td>
+    <td class="">{{account.balance | currency: getCurrencyCode(account.currencyCode)}}</td>
+    <td>
+      <a routerLink="{{account.accountNumber}}">
+        <button class="btn btn-primary text-white">
+          <span class="small">View</span>
+        </button>
+      </a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<table *ngIf="isSmall" class="table text pt-2">
+  <thead>
+  <tr>
+    <th>Account Number</th>
+    <th class=" ">Currency</th>
+    <th class=" ">Balance</th>
+    <th>Details</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let account of Accounts">
+    <th>{{account.accountNumber}}</th>
+    <td class="">{{account.currencyCode}}</td>
+    <td class="">{{account.balance | currency: getCurrencyCode(account.currencyCode)}}</td>
     <td>
       <a routerLink="{{account.accountNumber}}">
         <button class="btn btn-primary text-white">

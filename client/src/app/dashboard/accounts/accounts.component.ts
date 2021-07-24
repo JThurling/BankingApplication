@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {DashboardService} from "../dashboard.service";
 import {Bankaccount} from "../../shared/models/bankaccount";
 import {Currency} from "../../shared/models/currency";
@@ -13,6 +13,7 @@ export class AccountsComponent implements OnInit {
   search: string = null;
   accountNumber: number = null;
   currency: Currency;
+  isSmall: boolean;
 
   constructor(private dashService: DashboardService) { }
 
@@ -33,5 +34,10 @@ export class AccountsComponent implements OnInit {
     }, error => {
       console.log(error)
     });
+  }
+
+  @HostListener('window:resize', ['$event'])
+  View(event) {
+    this.isSmall = event.target.innerWidth < 768;
   }
 }

@@ -77,9 +77,8 @@ export class CreateAccountComponent implements OnInit {
   getPostData(post: HTMLInputElement) {
     this.dashService.getPostAddress(post.value).subscribe(res => {
       this.Address = res;
-      console.log(res);
     }, error => {
-      console.log(error);
+      this.toast.error("Not Found");
     });
   }
 }

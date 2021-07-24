@@ -19,6 +19,8 @@ import { CreateAccountComponent } from './dashboard/create-account/create-accoun
 import { DepositComponent } from './dashboard/deposit/deposit.component';
 import {ModalModule} from "ngx-bootstrap/modal";
 import {ToastrModule} from "ngx-toastr";
+import {SlideMenuModule} from "primeng/slidemenu";
+import {SidebarModule} from "primeng/sidebar";
 
 @NgModule({
   declarations: [
@@ -43,7 +45,9 @@ import {ToastrModule} from "ngx-toastr";
     BrowserAnimationsModule,
     ModalModule.forRoot(),
     ToastrModule.forRoot(),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SlideMenuModule,
+    SidebarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
