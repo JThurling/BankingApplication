@@ -25,4 +25,9 @@
       <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.2.6" />
     </ItemGroup>
 
+    <ItemGroup>
+        <Content Include="Content\**" CopyToPublishDirectory="PreserveNewest" />
+        <Folder Include="wwwroot\uploads" />
+    </ItemGroup>
+
 </Project>

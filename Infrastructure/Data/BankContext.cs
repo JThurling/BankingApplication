@@ -10,6 +10,7 @@ namespace Infrastructure.Data
 
         public DbSet<BankAccount> BankAccounts { get; set; }
 
+        public DbSet<Files> Files { get; set; }
         public DbSet<Transfers> Transfers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

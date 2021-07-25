@@ -1,4 +1,4 @@
-<table class="table text pt-2">
+<table *ngIf="!isSmall" class="table text pt-2">
   <thead>
   <tr>
     <th scope="col">From</th>
@@ -21,6 +21,28 @@
     <td>{{transfer.amount | currency: getCurrencyCode(transfer.currencyCode)}}</td>
     <td>
       <span [style.background-color]="transfer.isSuccessful ? 'green' : 'red'" class="small px-5 text-white p-1 rounded-2">{{transfer.isSuccessful ? "Successful" : "Failed"}}</span>
+    </td>
+    <td routerLink="/transfer-history/{{transfer.id}}">
+      <button style="cursor: pointer" class="small bg-primary border-0 px-3 text-white p-1 rounded-2">View</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<table *ngIf="isSmall" class="table text pt-2">
+  <thead>
+  <tr>
+    <th scope="col">From</th>
+    <th scope="col">Amount</th>
+    <th scope="col">Status</th>
+    <th scope="col">View Details</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let transfer of TransferList">
+    <th scope="row">{{transfer.from}}</th>
+    <td>{{transfer.amount | currency: getCurrencyCode(transfer.currencyCode)}}</td>
+    <td>
+      <span [style.background-color]="transfer.isSuccessful ? 'green' : 'red'" class="small px-4 text-white p-1 rounded-2">{{transfer.isSuccessful ? "Successful" : "Failed"}}</span>
     </td>
     <td routerLink="/transfer-history/{{transfer.id}}">
       <button style="cursor: pointer" class="small bg-primary border-0 px-3 text-white p-1 rounded-2">View</button>

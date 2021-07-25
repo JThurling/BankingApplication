@@ -1,13 +1,17 @@
 ﻿using System;
-using System.Net.Mime;
-using System.Runtime.CompilerServices;
+using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using AutoMapper;
 using Core.BankAccount;
 using Core.DTO;
 using Core.Interfaces;
 using Core.Specs;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Internal;
+using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
 
 namespace BankApplication.Controllers
 {
@@ -16,12 +20,19 @@ namespace BankApplication.Controllers
         private readonly IBankingAccount _bankingAccount;
         private readonly IMapper _mapper;
         private readonly ISearch _search;
+        private readonly IWebHostEnvironment _environment;
+        private readonly IConfiguration _configuration;
 
-        public BankingController(IBankingAccount bankingAccount, IMapper mapper, ISearch search)
+        public BankingController(IBankingAccount bankingAccount
+            , IMapper mapper, ISearch search
+            , IWebHostEnvironment environment,
+            IConfiguration configuration)
         {
             _bankingAccount = bankingAccount;
             _mapper = mapper;
             _search = search;
+            _environment = environment;
+            _configuration = configuration;
         }
 
         [HttpGet]
@@ -41,11 +52,40 @@ namespace BankApplication.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateNewBankAccount([FromForm] BankAccountDto bankAccountDto)
         {
+            var files = Request.Form.Files.Any() ? Request.Form.Files : new FormFileCollection();
+
+            if (!files.Any())
+            {
+                files = null;
+            }
+
+            var references = saveFiles(files);
+
             var mappedBankAccount = _mapper.Map<BankAccount>(bankAccountDto);
 
-            var result = await _bankingAccount.Create(mappedBankAccount);
+            var result = await _bankingAccount.Create(mappedBankAccount, references);
             if (!result) return BadRequest("There has been an error");
             return Ok(true);
+        }
+
+        public List<string> saveFiles(IFormFileCollection formFileCollection)
+        {
+            List<string> list = new List<string>();
+            foreach (var file in formFileCollection)
+            {
+                if (file.Length > 0)
+                {
+                    string filePath = Path.Combine(_environment.WebRootPath + @"\uploads\",
+                        file.FileName.Replace(' ', '-'));
+                    using (Stream fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        file.CopyTo(fileStream);
+                        list.Add(Path.Combine(_configuration["ApiUrl"], file.FileName.Replace(' ', '-')));
+                    }
+                }
+            }
+
+            return list;
         }
 
         [HttpPost("deposit/{id}")]

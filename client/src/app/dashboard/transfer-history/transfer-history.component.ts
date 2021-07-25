@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {DashboardService} from "../dashboard.service";
 import {Transfers} from "../../shared/models/transfer";
 
@@ -9,6 +9,7 @@ import {Transfers} from "../../shared/models/transfer";
 })
 export class TransferHistoryComponent implements OnInit {
   TransferList: Transfers[];
+  isSmall: boolean = window.innerWidth < 768;
 
   constructor(private dashService: DashboardService) { }
 
@@ -24,5 +25,10 @@ export class TransferHistoryComponent implements OnInit {
 
   getCurrencyCode(currencyCode: any) {
     return this.dashService.getCurrencyCode(currencyCode);
+  }
+
+  @HostListener('window:resize', ['$event'])
+  View(event) {
+    this.isSmall = event.target.innerWidth < 768;
   }
 }

@@ -13,7 +13,7 @@ export class SideNavComponent implements OnInit {
       routerLink: '/'
     },
     {
-      label: 'Account >',
+      label: 'Account ->',
       items: [
         {
           label: 'Create Account',
@@ -30,7 +30,7 @@ export class SideNavComponent implements OnInit {
       ]
     },
     {
-      label: 'Transfers >',
+      label: 'Transfers ->',
       items: [
         {
           label: 'Make a transfer',

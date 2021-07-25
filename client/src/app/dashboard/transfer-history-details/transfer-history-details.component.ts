@@ -29,7 +29,6 @@ export class TransferHistoryDetailsComponent implements OnInit {
   getToAccount() {
       this.dashService.getBankAccount(+this.Transfer.to).subscribe(res => {
         this.selectedTo = res;
-        console.log(this.selectedTo);
       });
   }
 

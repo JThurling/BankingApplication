@@ -13,7 +13,7 @@ export class AccountsComponent implements OnInit {
   search: string = null;
   accountNumber: number = null;
   currency: Currency;
-  isSmall: boolean;
+  isSmall: boolean = window.innerWidth < 768;
 
   constructor(private dashService: DashboardService) { }
 

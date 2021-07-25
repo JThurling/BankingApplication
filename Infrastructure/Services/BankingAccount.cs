@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Core.BankAccount;
 using Core.Interfaces;
 using Core.Specs;
 using Infrastructure.Data;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Services
@@ -13,20 +17,31 @@ namespace Infrastructure.Services
     public class BankingAccount : IBankingAccount, ISearch
     {
         private readonly BankContext _context;
+        private readonly IWebHost _host;
 
         public BankingAccount(BankContext context)
         {
             _context = context;
         }
 
-        public async Task<bool> Create(BankAccount bankAccount)
+        public async Task<bool> Create(BankAccount bankAccount, List<string> references)
         {
             bankAccount.AccountNumber = GenerateAccountNumber();
             bankAccount.SortCode = GenerateSortCode();
 
+            List<Files> files = new List<Files>();
             var doesExistCheck = _context.BankAccounts.FirstOrDefault(ba
                 => ba.AccountNumber == bankAccount.AccountNumber || ba.AddressLine1 == bankAccount.AddressLine1);
             if (doesExistCheck != null) return false;
+            if (references.Count > 0)
+            {
+                foreach(var reference in references)
+                {
+                    files.Add(new Files{FileReferences = reference});
+                }
+
+                bankAccount.FilesList = files;
+            }
             await _context.BankAccounts.AddAsync(bankAccount);
             var result = await _context.SaveChangesAsync();
 
@@ -101,7 +116,7 @@ namespace Infrastructure.Services
 
         public async Task<BankAccount> GetAccount(int accountNumber)
         {
-            var account = await _context.BankAccounts.FirstOrDefaultAsync(f
+            var account = await _context.BankAccounts.Include(f => f.FilesList).FirstOrDefaultAsync(f
                 => f.AccountNumber == accountNumber);
 
             return account;
@@ -110,6 +125,7 @@ namespace Infrastructure.Services
         public async Task<List<BankAccount>> GetAccounts(BankingSpecs bankingSpecs)
         {
             var list = await _context.BankAccounts
+                .Include(f => f.FilesList)
                 .Where(sq =>
                     (string.IsNullOrEmpty(bankingSpecs.Search)
                      || sq.FullName.Contains(bankingSpecs.Search)

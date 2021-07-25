@@ -1,19 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+using System.IO;
 using BankApplication.Helpers;
-using Core.BankAccount;
 using Core.Interfaces;
 using Infrastructure.Data;
 using Infrastructure.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 
@@ -71,12 +66,12 @@ namespace BankApplication
 
             app.UseDefaultFiles();
             app.UseStaticFiles();
-            // app.UseStaticFiles(new StaticFileOptions
-            // {
-            //     FileProvider = new PhysicalFileProvider(
-            //             Path.Combine(Directory.GetCurrentDirectory(), "Content")
-            //         ), RequestPath = "/content"
-            // });
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                        Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads/")
+                    ), RequestPath = "/wwwroot/uploads"
+            });
 
             app.UseCors("CorsPolicy");
 

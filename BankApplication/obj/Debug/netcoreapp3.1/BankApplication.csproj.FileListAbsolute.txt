@@ -51,3 +51,5 @@ C:\Users\jthur\UniversalCoding\BankApplication\BankApplication\bin\Debug\netcore
 C:\Users\jthur\UniversalCoding\BankApplication\BankApplication\bin\Debug\netcoreapp3.1\MySqlConnector.dll
 C:\Users\jthur\UniversalCoding\BankApplication\BankApplication\bin\Debug\netcoreapp3.1\Pomelo.EntityFrameworkCore.MySql.dll
 C:\Users\jthur\UniversalCoding\BankApplication\BankApplication\bin\Debug\netcoreapp3.1\Pomelo.JsonObject.dll
+C:\Users\jthur\UniversalCoding\BankApplication\BankApplication\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Http.Features.dll
+C:\Users\jthur\UniversalCoding\BankApplication\BankApplication\bin\Debug\netcoreapp3.1\System.IO.Pipelines.dll

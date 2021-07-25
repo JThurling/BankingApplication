@@ -55,6 +55,25 @@ namespace Infrastructure.Data.Migrations
                     b.ToTable("BankAccounts");
                 });
 
+            modelBuilder.Entity("Core.BankAccount.Files", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<Guid?>("BankAccountId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("FileReferences")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BankAccountId");
+
+                    b.ToTable("Files");
+                });
+
             modelBuilder.Entity("Core.BankAccount.Transfers", b =>
                 {
                     b.Property<Guid>("Id")
@@ -85,6 +104,13 @@ namespace Infrastructure.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Transfers");
+                });
+
+            modelBuilder.Entity("Core.BankAccount.Files", b =>
+                {
+                    b.HasOne("Core.BankAccount.BankAccount", "BankAccount")
+                        .WithMany("FilesList")
+                        .HasForeignKey("BankAccountId");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,4 +1,4 @@
-import {Component, OnInit, TemplateRef} from '@angular/core';
+import {Component, HostListener, OnInit, TemplateRef} from '@angular/core';
 import {Bankaccount} from "../../shared/models/bankaccount";
 import {DashboardService} from "../dashboard.service";
 import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
@@ -16,6 +16,7 @@ export class DepositComponent implements OnInit {
   account: Bankaccount;
   depositAmount: number = 0;
   loading: boolean = false;
+  isSmall: boolean = window.innerWidth < 768;
 
   constructor(private dashService: DashboardService,  private modalService: BsModalService,
               private route: Router, private toast: ToastrService) { }
@@ -52,5 +53,10 @@ export class DepositComponent implements OnInit {
   decline() {
     this.depositAmount = 0;
     this.modalRef.hide();
+  }
+
+  @HostListener('window:resize', ['$event'])
+  View(event) {
+    this.isSmall = event.target.innerWidth < 768;
   }
 }

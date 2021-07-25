@@ -1,4 +1,5 @@
-﻿using System.Security.Cryptography;
+﻿using System.Collections.Generic;
+using System.Security.Cryptography;
 using System.Security.Principal;
 
 namespace Core.BankAccount
@@ -22,5 +23,14 @@ namespace Core.BankAccount
         public string CurrencyCode { get; set; }
 
         public decimal Balance { get; set; }
+
+        public List<Files> FilesList { get; set; }
+    }
+
+    public class Files : BaseEntity
+    {
+        public string FileReferences { get; set; }
+
+        public BankAccount BankAccount { get; set; }
     }
 }

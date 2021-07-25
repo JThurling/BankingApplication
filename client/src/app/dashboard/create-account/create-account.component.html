@@ -1,5 +1,5 @@
 <div class="row px-3">
-  <div class="col-md-12 col-lg-8 p-3 border mt-3 text rounded-2 border-primary shadow-sm">
+  <div class="col-md-12 col-lg-12 col-xl-8 p-3 border mt-3 text rounded-2 border-primary shadow-sm">
     <form [formGroup]="createAccountForm" (ngSubmit)="onSubmit()">
       <h1 class="small">Create a new account - <span class="fw-bold">* required fields</span></h1>
       <hr>
@@ -57,7 +57,25 @@
           </select>
         </div>
       </div>
-      <button [disabled]="!createAccountForm.valid" type="submit" class="btn btn-primary text-white mt-5 float-end">
+      <div class="row text-white p-3 mt-3">
+        <p class="col-4 bg-secondary me-2 p-3 rounded-2 small shadow-sm" *ngFor="let file of files; index as i">
+          {{i + 1}}. {{file.name}}
+          <svg style="cursor: pointer" (click)="onRemove(file)" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi float-end bi-x-circle-fill" viewBox="0 0 16 16">
+            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+          </svg>
+        </p>
+      </div>
+      <input id="upload-file" multiple hidden type="file" (change)="uploadFile($event)" accept="application/*" class="form-control border-0">
+      <div class="input-group-append">
+        <label for="upload-file" class="btn btn-light m-0 rounded px-4">
+          <span class="me-3">Choose Supporting Files</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-arrow-up" viewBox="0 0 16 16">
+            <path d="M8.5 11.5a.5.5 0 0 1-1 0V7.707L6.354 8.854a.5.5 0 1 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 7.707V11.5z"/>
+            <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+          </svg>
+        </label>
+      </div>
+      <button [disabled]="!createAccountForm.valid" type="submit" class="btn btn-primary text-white mt-3 float-end">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
           <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
           <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
@@ -66,7 +84,7 @@
       </button>
     </form>
   </div>
-  <div class="col-lg mol-md-12 p-3 position-relative border ms-lg-2 mt-3 text rounded-2 border-primary shadow-sm">
+  <div class="col-xl p-3 position-relative border ms-xl-2 mt-3 text rounded-2 border-primary shadow-sm">
     <h1 class="small">Check Address</h1>
     <hr>
     <label for="postcode">Enter Post Code:</label>
