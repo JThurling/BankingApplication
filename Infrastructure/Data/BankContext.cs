@@ -24,6 +24,7 @@ namespace Infrastructure.Data
                 {
                     new BankAccount
                     {
+                        Id = Guid.NewGuid(),
                         AccountNumber = 76024596,
                         AccountType = "Personal",
                         AddressLine1 = "16 Wood Ave, Longbeach",
@@ -36,6 +37,7 @@ namespace Infrastructure.Data
                     },
                     new BankAccount
                     {
+                        Id = Guid.NewGuid(),
                         AccountNumber = 18227293,
                         AccountType = "Company",
                         AddressLine1 = "16 Wood Ave, Essex",
@@ -48,6 +50,7 @@ namespace Infrastructure.Data
                     },
                     new BankAccount
                     {
+                        Id = Guid.NewGuid(),
                         AccountNumber = 11341209,
                         AccountType = "Personal",
                         AddressLine1 = "16 Wood Ave, Longman",
@@ -65,6 +68,7 @@ namespace Infrastructure.Data
                 {
                     new Transfers
                     {
+                        Id = Guid.NewGuid(),
                         Amount = 150.00m,
                         CurrencyCode = "USD",
                         DateOfTransfer = DateTime.Now,
@@ -75,6 +79,7 @@ namespace Infrastructure.Data
                     },
                     new Transfers
                     {
+                        Id = Guid.NewGuid(),
                         Amount = 150.00m,
                         CurrencyCode = "GBP",
                         DateOfTransfer = DateTime.Now,
