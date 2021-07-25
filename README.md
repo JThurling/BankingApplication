@@ -12,6 +12,7 @@ View final result at http://jtbank.azurewebsites.net/
 - Account Type (Personal / Company / Other) - ✅
 - Initial deposit (money deposit during the account’s creation) - ✅
 - Currency (the default currency for the account, e.g., GBP, USD, or others) - ✅
+
 **Notes:**
 - After the creation of the account, the application will provide new “Sort Code” and “Account Number”. - ✅
 - If there is an account with the same full name, under the same address, the application will not - ✅
