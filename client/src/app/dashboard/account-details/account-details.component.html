@@ -35,6 +35,16 @@
       <p class="d-flex justify-content-between"><span>Balance Available:</span> <span
         class="fw-bold">{{Accounts.balance | currency: getCurrencyCode(Accounts.currencyCode)}}</span></p>
     </div>
+
+    <div class="col-lg-12 p-3 border-right">
+      <h3 class="small">Account Documents</h3>
+      <hr>
+      <div class="row">
+        <div *ngFor="let file of Accounts.filesList; let i = index">
+          <a target="_blank" href="{{file.fileReferences}}">{{i + 1}}. File</a>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="col-md-12 offset-lg-1 col-lg-10 col-sm-12 p-3 border border-primary background rounded-2 mt-2">
     <h3 class="small">Use this account for transfer:</h3>

@@ -1,0 +1,30 @@
+﻿{
+  "deploy.reloaded": {
+    "packages": [
+      {
+        "name": "Version 1.0.0",
+        "description": "Package version 1.0.0",
+
+        "files": [
+          "publish/**"
+        ]
+      }
+    ],
+
+    "targets": [
+      {
+        "type": "ftps",
+        "name": "Linux",
+        "description": "SFTP folder",
+
+        "host": "138.68.74.237", "port": 22,
+        "user": "jtbank\$jtbank", "password": "bWqSsCK65PgSTwS5itcSkCzlTLbX5hWSZFb0wh6nZQR2Qt0dQfu1wjLnrp5m",
+
+        "dir": "ftps://waws-prod-dm1-187.ftp.azurewebsites.windows.net/site/wwwroot",
+        "mappings": {
+          "publish/**": "/"
+        }
+      }
+    ]
+  }
+}

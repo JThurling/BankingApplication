@@ -14,7 +14,7 @@
         "outputPath": "C:\\Users\\jthur\\UniversalCoding\\BankApplication\\BankApplication\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet"
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
           "C:\\Users\\jthur\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -113,7 +113,7 @@
         "outputPath": "C:\\Users\\jthur\\UniversalCoding\\BankApplication\\Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet"
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
           "C:\\Users\\jthur\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -201,7 +201,7 @@
         "outputPath": "C:\\Users\\jthur\\UniversalCoding\\BankApplication\\Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet"
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
           "C:\\Users\\jthur\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -309,7 +309,7 @@
         "outputPath": "C:\\Users\\jthur\\UniversalCoding\\BankApplication\\IntegrationTestSuite\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet"
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
           "C:\\Users\\jthur\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -383,9 +383,6 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
-            "Microsoft.AspNetCore.App": {
-              "privateAssets": "none"
-            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }

@@ -8,5 +8,11 @@
   postalCode:    string;
   currencyCode:  string;
   balance:       number;
+  filesList:     FilesList[];
   id:            string;
+}
+
+export interface FilesList {
+  fileReferences: string;
+  id:             string;
 }

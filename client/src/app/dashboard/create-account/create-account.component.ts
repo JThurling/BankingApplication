@@ -15,6 +15,7 @@ export class CreateAccountComponent implements OnInit {
   createAccountForm: FormGroup;
   files: File[] = [];
   Address: Postcodes = null;
+  loading = false;
 
   constructor(private formBuilder: FormBuilder, private dashService: DashboardService
               ,private toast: ToastrService) { }
@@ -67,7 +68,9 @@ export class CreateAccountComponent implements OnInit {
   }
 
   onSubmit() {
+    this.loading = true;
     this.dashService.onSubmit(this.createAccountForm).subscribe(res => {
+      this.loading = false;
       this.toast.success("Created Account");
     }, error => {
       this.toast.error("There was an error: \n Please check if account exists");
