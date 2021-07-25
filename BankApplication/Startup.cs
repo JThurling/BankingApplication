@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using BankApplication.Helpers;
 using Core.Interfaces;
@@ -34,7 +35,7 @@ namespace BankApplication
 
             services.AddDbContext<BankContext>(options =>
             {
-                options.UseMySql(_configuration.GetConnectionString("DefaultConnection"), options =>
+                options.UseMySql(_configuration.GetConnectionString(Environment.GetEnvironmentVariable("MYSQLCONNSTR_localdb")?.ToString()), options =>
                 {
                     options.MigrationsAssembly("Infrastructure");
                 });
@@ -69,8 +70,8 @@ namespace BankApplication
             app.UseStaticFiles(new StaticFileOptions
             {
                 FileProvider = new PhysicalFileProvider(
-                        Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads/")
-                    ), RequestPath = "/wwwroot/uploads"
+                        Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/")
+                    ), RequestPath = "/wwwroot"
             });
 
             app.UseCors("CorsPolicy");

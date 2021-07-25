@@ -28,7 +28,6 @@
 
     <ItemGroup>
         <Content Include="Content\**" CopyToPublishDirectory="PreserveNewest" />
-        <Folder Include="wwwroot\uploads" />
     </ItemGroup>
 
 </Project>

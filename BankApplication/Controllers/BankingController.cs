@@ -75,7 +75,7 @@ namespace BankApplication.Controllers
             {
                 if (file.Length > 0)
                 {
-                    string filePath = Path.Combine(_environment.WebRootPath + @"\uploads\",
+                    string filePath = Path.Combine(_environment.WebRootPath,
                         file.FileName.Replace(' ', '-'));
                     using (Stream fileStream = new FileStream(filePath, FileMode.Create))
                     {
