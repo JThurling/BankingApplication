@@ -19,7 +19,6 @@ const routes: Routes = [
       {path: 'transfer-history', component: TransferHistoryComponent},
       {path: 'transfer-history/:id', component: TransferHistoryDetailsComponent},
     ]},
-
   {path: '**', component: DashboardComponent}
 ];
 

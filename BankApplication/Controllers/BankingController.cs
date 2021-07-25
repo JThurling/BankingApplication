@@ -59,7 +59,11 @@ namespace BankApplication.Controllers
                 files = null;
             }
 
-            var references = saveFiles(files);
+            List<string> references = new List<string>();
+            if (files != null)
+            {
+                references = saveFiles(files);
+            }
 
             var mappedBankAccount = _mapper.Map<BankAccount>(bankAccountDto);
 

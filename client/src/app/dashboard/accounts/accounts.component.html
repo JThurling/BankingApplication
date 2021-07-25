@@ -24,56 +24,64 @@
   </div>
 
 </div>
-<table *ngIf="!isSmall" class="table text pt-2">
-  <thead>
-  <tr>
-    <th>Account Number</th>
-    <th class=" ">Full Name</th>
-    <th class=" ">Account Type</th>
-    <th class=" ">Currency</th>
-    <th class=" ">Balance</th>
-    <th>Details</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let account of Accounts">
-    <th>{{account.accountNumber}}</th>
-    <td class="">{{account.fullName}}</td>
-    <td><span class="small bg-primary text-white p-1 px-5 rounded-2">{{account.accountType}}</span></td>
-    <td class="">{{account.currencyCode}}</td>
-    <td class="">{{account.balance | currency: getCurrencyCode(account.currencyCode)}}</td>
-    <td>
-      <a routerLink="{{account.accountNumber}}">
-        <button class="btn btn-primary text-white">
-          <span class="small">View</span>
-        </button>
-      </a>
-    </td>
-  </tr>
-  </tbody>
-</table>
 
-<table *ngIf="isSmall" class="table text pt-2">
-  <thead>
-  <tr>
-    <th>Account Number</th>
-    <th class=" ">Currency</th>
-    <th class=" ">Balance</th>
-    <th>Details</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let account of Accounts">
-    <th>{{account.accountNumber}}</th>
-    <td class="">{{account.currencyCode}}</td>
-    <td class="">{{account.balance | currency: getCurrencyCode(account.currencyCode)}}</td>
-    <td>
-      <a routerLink="{{account.accountNumber}}">
-        <button class="btn btn-primary text-white">
-          <span class="small">View</span>
-        </button>
-      </a>
-    </td>
-  </tr>
-  </tbody>
-</table>
+<div *ngIf="Accounts.length === 0" class="text col-12">
+  <h1>There is no accounts yets</h1>
+  <button routerLink="/create"></button>
+</div>
+<div *ngIf="Accounts.length < 0">
+  <table *ngIf="!isSmall" class="table text pt-2">
+    <thead>
+    <tr>
+      <th>Account Number</th>
+      <th class=" ">Full Name</th>
+      <th class=" ">Account Type</th>
+      <th class=" ">Currency</th>
+      <th class=" ">Balance</th>
+      <th>Details</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let account of Accounts">
+      <th>{{account.accountNumber}}</th>
+      <td class="">{{account.fullName}}</td>
+      <td><span class="small bg-primary text-white p-1 px-5 rounded-2">{{account.accountType}}</span></td>
+      <td class="">{{account.currencyCode}}</td>
+      <td class="">{{account.balance | currency: getCurrencyCode(account.currencyCode)}}</td>
+      <td>
+        <a routerLink="{{account.accountNumber}}">
+          <button class="btn btn-primary text-white">
+            <span class="small">View</span>
+          </button>
+        </a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <table *ngIf="isSmall" class="table text pt-2">
+    <thead>
+    <tr>
+      <th>Account Number</th>
+      <th class=" ">Currency</th>
+      <th class=" ">Balance</th>
+      <th>Details</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let account of Accounts">
+      <th>{{account.accountNumber}}</th>
+      <td class="">{{account.currencyCode}}</td>
+      <td class="">{{account.balance | currency: getCurrencyCode(account.currencyCode)}}</td>
+      <td>
+        <a routerLink="{{account.accountNumber}}">
+          <button class="btn btn-primary text-white">
+            <span class="small">View</span>
+          </button>
+        </a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
