@@ -4,7 +4,7 @@ A small back-office back-office application - built with .NET and Angular - host
 **Website:**
 View final result at http://jtbank.azurewebsites.net/
 
-**Edit: Might not be able to serve file depending on browser - https:// certificate error. You are able to download the file**
+**Edit: Might not be able to serve files, depending user's browser - https:// certificate error. You are able to download a file**
 
 **I. Creation of accounts with details:**
 - Full Name - ✅
