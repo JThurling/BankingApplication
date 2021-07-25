@@ -35,7 +35,7 @@ namespace BankApplication
 
             services.AddDbContext<BankContext>(options =>
             {
-                options.UseMySql(_configuration.GetConnectionString(Environment.GetEnvironmentVariable("MYSQLCONNSTR_localdb")), options =>
+                options.UseMySql(_configuration.GetConnectionString("DefaultConnection"), options =>
                 {
                     options.MigrationsAssembly("Infrastructure");
                 });
