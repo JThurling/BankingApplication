@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Route, Router} from "@angular/router";
 
 @Component({
   selector: 'app-side-nav',
@@ -44,7 +45,11 @@ export class SideNavComponent implements OnInit {
     }
   ];
 
-  constructor() { }
+  constructor(private router: Router) {
+    router.events.subscribe(() => {
+      this.display = false;
+    })
+  }
 
   ngOnInit(): void {
   }

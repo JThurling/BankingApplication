@@ -63,7 +63,6 @@
   <thead>
   <tr>
     <th>Account Number</th>
-    <th class=" ">Currency</th>
     <th class=" ">Balance</th>
     <th>Details</th>
   </tr>
@@ -71,7 +70,6 @@
   <tbody>
   <tr *ngFor="let account of Accounts">
     <th>{{account.accountNumber}}</th>
-    <td class="">{{account.currencyCode}}</td>
     <td class="">{{account.balance | currency: getCurrencyCode(account.currencyCode)}}</td>
     <td>
       <a routerLink="{{account.accountNumber}}">

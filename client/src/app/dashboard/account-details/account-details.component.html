@@ -15,8 +15,7 @@
       <h3 class="small">Personal Details</h3>
       <hr>
       <p class="d-flex justify-content-between"><span>Full Name:</span><span class="ms-2">{{Accounts.fullName}}</span></p>
-      <p class="d-flex justify-content-between"><span>Address:</span><span class="ms-2">{{Accounts.addressLine1}}
-        , {{Accounts.city}}</span></p>
+      <p class="d-flex justify-content-between"><span>Address:</span><span class="">{{Accounts.addressLine1}}, {{Accounts.city}}</span></p>
       <p class="d-flex justify-content-between"><span>Postal Code:</span> <span class="">{{Accounts.postalCode}}</span>
       </p>
       <button class="float-end btn btn-primary text-white" (click)="openDepositModal(template)">Edit Personal Details</button>
@@ -31,7 +30,7 @@
       <p class="d-flex justify-content-between"><span>Currency Code:</span><span
         class="ms-2">{{Accounts.currencyCode}}</span></p>
       <p class="d-flex justify-content-between"><span>Account Type:</span> <span
-        class="small bg-primary text-white p-1 px-5 rounded-2 ms-3">{{Accounts.accountType}}</span></p>
+        class="small bg-primary text-white p-1 px-sm-3 px-md-5 rounded-2 ms-3">{{Accounts.accountType}}</span></p>
       <p class="d-flex justify-content-between"><span>Balance Available:</span> <span
         class="fw-bold">{{Accounts.balance | currency: getCurrencyCode(Accounts.currencyCode)}}</span></p>
     </div>

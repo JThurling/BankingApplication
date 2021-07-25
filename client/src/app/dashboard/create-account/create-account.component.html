@@ -59,7 +59,7 @@
         </div>
       </div>
       <div class="row text-white p-3 mt-3">
-        <p class="col-4 bg-secondary me-2 p-3 rounded-2 small shadow-sm" *ngFor="let file of files; index as i">
+        <p class="col-md-12 col-lg-4 bg-secondary me-2 p-3 rounded-2 small shadow-sm" *ngFor="let file of files; index as i">
           {{i + 1}}. {{file.name}}
           <svg style="cursor: pointer" (click)="onRemove(file)" xmlns="http://www.w3.org/2000/svg" width="20"
                height="20" fill="currentColor" class="bi float-end bi-x-circle-fill" viewBox="0 0 16 16">
