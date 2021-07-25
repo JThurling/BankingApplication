@@ -26,8 +26,8 @@
 </div>
 
 <div *ngIf="Accounts.length === 0" class="text col-12">
-  <h1>There is no accounts yets</h1>
-  <button routerLink="/create"></button>
+  <h1 class="small">There are no accounts yet</h1>
+  <button class="btn btn-primary" routerLink="/create">Create Account</button>
 </div>
 <div *ngIf="Accounts.length < 0">
   <table *ngIf="!isSmall" class="table text pt-2">
