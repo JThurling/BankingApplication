@@ -1,7 +1,7 @@
 import {Component, OnInit, TemplateRef} from '@angular/core';
 import {DashboardService} from "../dashboard.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {Bankaccount} from "../../shared/models/bankaccount";
+import {Bankaccount, FilesList} from "../../shared/models/bankaccount";
 import {HttpParams} from "@angular/common/http";
 import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ToastrService} from "ngx-toastr";
@@ -101,5 +101,10 @@ export class AccountDetailsComponent implements OnInit {
 
   decline() {
     this.modalRef.hide();
+  }
+
+  getFileName(file: FilesList) {
+    let arr = file.fileReferences.split('/');
+    return arr[arr.length-1];
   }
 }

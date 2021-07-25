@@ -73,6 +73,7 @@ export class CreateAccountComponent implements OnInit {
       this.loading = false;
       this.toast.success("Created Account");
     }, error => {
+      this.loading = false;
       this.toast.error("There was an error: \n Please check if account exists");
     });
   }

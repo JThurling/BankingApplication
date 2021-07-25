@@ -40,7 +40,7 @@
       <hr>
       <div class="row">
         <div *ngFor="let file of Accounts.filesList; let i = index">
-          <a target="_blank" href="{{file.fileReferences}}">{{i + 1}}. File</a>
+          <a class="text-secondary" target="_blank" href="{{file.fileReferences}}">{{i + 1}}. {{getFileName(file)}}</a>
         </div>
       </div>
     </div>
