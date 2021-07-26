@@ -6,6 +6,18 @@ View final result at http://jtbank.azurewebsites.net/
 
 **Edit: Might not be able to serve files, depending user's browser - https:// certificate error. You are able to download a file**
 
+**Steps to run locally. Main client hosted through API**
+- Install .Net runtime v3.1+, Angular v11+ and MySQL,
+- `git clone https://github.com/JThurling/BankingApplication.git`
+- `dotnet restore`
+- `cd ./BankApplication/`
+- `dotnet watch run`
+
+**Extra - Running Angular Application. Note: This will not have the same color scheme after `npm install`**
+- `cd ./client/`
+- `npm i`
+- `ng serve`
+
 **I. Creation of accounts with details:**
 - Full Name - ✅
 - Full Address - ✅
