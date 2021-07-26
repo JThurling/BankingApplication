@@ -32,7 +32,7 @@ namespace Infrastructure.Services
             List<Files> files = new List<Files>();
             var doesExistCheck = _context.BankAccounts.FirstOrDefault(ba
                 => ba.AccountNumber == bankAccount.AccountNumber ||
-                   ba.AddressLine1.Trim().ToLower().Remove(' ') == bankAccount.AddressLine1.Trim().ToLower().Remove(' '));
+                   ba.AddressLine1.Trim().ToLower() == bankAccount.AddressLine1.Trim().ToLower());
             if (doesExistCheck != null) return false;
             if (references.Count > 0)
             {

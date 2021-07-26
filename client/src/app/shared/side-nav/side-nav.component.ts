@@ -10,10 +10,6 @@ export class SideNavComponent implements OnInit {
   display: boolean;
   items: any[] = [
     {
-      label: 'Home',
-      routerLink: '/'
-    },
-    {
       label: 'Account ->',
       items: [
         {
