@@ -1,5 +1,5 @@
 # BankingApplication
-A small back-office back-office application - built with .NET and Angular - hosted with Azure App Services. Fully Responsive UI
+A small back-office banking application - built with .NET and Angular - hosted with Azure App Services. Fully Responsive UI
 
 **Edit: Might not be able to serve files, depending user's browser - https:// certificate error. You are able to download a file**
 
