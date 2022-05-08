@@ -1,9 +1,6 @@
 # BankingApplication
 A small back-office back-office application - built with .NET and Angular - hosted with Azure App Services. Fully Responsive UI
 
-**Website:**
-View final result at http://jtbank.azurewebsites.net/
-
 **Edit: Might not be able to serve files, depending user's browser - https:// certificate error. You are able to download a file**
 
 **Steps to run locally. Main client hosted through API**
